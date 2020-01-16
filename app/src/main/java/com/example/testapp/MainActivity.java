@@ -62,19 +62,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cbApi(List<Map<String, Object>> paramList){
-
-        System.out.println(paramList);
-        for (Map<String, Object> map: paramList) {
-            System.out.println(map);
-            for( Map.Entry<String, Object> entry : map.entrySet() ){
-                System.out.println( String.format("키 : %s, 값 : %s", entry.getKey(), entry.getValue()) );
-            }
-        }
-
         if(paramList.size() > 0){
             Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("userList", (ArrayList<?>)paramList);
             startActivity(intent);
-            finish();
+        }else{
+            EditText editTextLoginPW = (EditText) findViewById(R.id.editText_pw);
+            editTextLoginPW.setText("조회결과 없음");
         }
     }
 
@@ -94,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
                 if (200 == resCode){
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     JSONObject json = new JSONObject(getStringFromInputStream(in));
+                    System.out.println("ooooooooooooooooooooooooooooooooo");
+                    System.out.println(json);
+                    System.out.println(json.get("shopUserVO"));
                     rstList = jsonUtils.getListMapFromJsonArray((JSONArray) json.get("shopUserVO"));
                 }
 
@@ -119,8 +116,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(List<Map<String, Object>> map) {
-            cbApi(map);
+        protected void onPostExecute(List<Map<String, Object>> list) {
+            if(list.size() > 0){
+                cbApi(list);
+            }
         }
 
         @Override

@@ -74,8 +74,7 @@
             android:textColor="#353535"
             android:background="#ffffff"
             android:paddingLeft="5dip"
-            android:singleLine="true"
-            android:inputType="textPassword" />
+            android:singleLine="true" />
 
     </LinearLayout>
 
