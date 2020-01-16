@@ -3,6 +3,7 @@ package com.example.testapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
             for( Map.Entry<String, Object> entry : map.entrySet() ){
                 System.out.println( String.format("키 : %s, 값 : %s", entry.getKey(), entry.getValue()) );
             }
+        }
+
+        if(paramList.size() > 0){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
