@@ -86,10 +86,9 @@ public class MainActivity extends AppCompatActivity {
                 int resCode = urlConnection.getResponseCode();
 
                 if (200 == resCode){
+                    System.out.println("ooooooooooooooooooooooooooooooooo");
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     JSONObject json = new JSONObject(getStringFromInputStream(in));
-                    System.out.println("ooooooooooooooooooooooooooooooooo");
-                    System.out.println(json);
                     System.out.println(json.get("shopUserVO"));
                     rstList = jsonUtils.getListMapFromJsonArray((JSONArray) json.get("shopUserVO"));
                 }
