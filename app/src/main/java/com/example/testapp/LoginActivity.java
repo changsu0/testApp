@@ -1,5 +1,6 @@
 package com.example.testapp;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -27,9 +28,6 @@ public class LoginActivity extends AppCompatActivity {
             strList.add(map.get("userId").toString());
         }
 
-        //ArrayAdapter<> adapter = new ArrayAdapter<>(this, R.layout.activity_login, 0, "SSS");
-
-
         // 5. ArrayList 객체와 ListView 객체를 연결하기 위해 ArrayAdapter객체를 사용합니다.
         // 우선 ArrayList 객체를 ArrayAdapter 객체에 연결합니다.
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -38,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
                 // 한 줄에 보여지는 아이템 갯수나 구성을 변경하려면 여기에 새로만든 레이아웃을 지정하면 됩니다.
                 strList  // 데이터가 저장되어 있는 ArrayList 객체
         );
-
 
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);

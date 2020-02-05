@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void cbApi(List<Map<String, Object>> paramList){
         if(paramList.size() > 0){
-            Intent intent = new Intent(this, LoginActivity.class);
+//            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, ImageActivity.class);
             intent.putExtra("userList", (ArrayList<?>)paramList);
             startActivity(intent);
         }else{
@@ -86,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 int resCode = urlConnection.getResponseCode();
 
                 if (200 == resCode){
-                    System.out.println("ooooooooooooooooooooooooooooooooo");
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     JSONObject json = new JSONObject(getStringFromInputStream(in));
                     System.out.println(json.get("shopUserVO"));
@@ -116,8 +116,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Map<String, Object>> list) {
-            if(list.size() > 0){
-                cbApi(list);
+            if (list != null){
+                if(list.size() > 0){
+                    cbApi(list);
+                }
             }
         }
 
